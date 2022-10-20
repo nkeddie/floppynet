@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FloppyNet.Aws.Cdk", "FloppyNet.Aws.Cdk\FloppyNet.Aws.Cdk.csproj", "{C0A1E9BC-4247-4E76-8845-D31667F911CE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FloppyNet.Aws.TelegramLambda", "FloppyNet.Aws.TelegramLambda\FloppyNet.Aws.TelegramLambda.csproj", "{F972D5EB-EEB6-431F-A13D-04A90A94FA14}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FloppyNet.Aws.WordleLambda", "FloppyNet.Aws.WordleLambda\FloppyNet.Aws.WordleLambda.csproj", "{E1399DA0-BBA1-4899-94FE-238902C894D7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C0A1E9BC-4247-4E76-8845-D31667F911CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0A1E9BC-4247-4E76-8845-D31667F911CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0A1E9BC-4247-4E76-8845-D31667F911CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0A1E9BC-4247-4E76-8845-D31667F911CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F972D5EB-EEB6-431F-A13D-04A90A94FA14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F972D5EB-EEB6-431F-A13D-04A90A94FA14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F972D5EB-EEB6-431F-A13D-04A90A94FA14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F972D5EB-EEB6-431F-A13D-04A90A94FA14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1399DA0-BBA1-4899-94FE-238902C894D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1399DA0-BBA1-4899-94FE-238902C894D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1399DA0-BBA1-4899-94FE-238902C894D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1399DA0-BBA1-4899-94FE-238902C894D7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B9D2B7F0-F265-4493-BDD1-A4C9DB7EF09A}
+	EndGlobalSection
+EndGlobal

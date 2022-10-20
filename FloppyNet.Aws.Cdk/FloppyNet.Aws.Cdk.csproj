@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Amazon.CDK" Version="1.172.0" />
+    <PackageReference Include="Amazon.CDK.AWS.APIGateway" Version="1.172.0" />
+    <PackageReference Include="Amazon.CDK.AWS.CloudFront" Version="1.172.0" />
+    <PackageReference Include="Amazon.CDK.AWS.CloudFront.Origins" Version="1.172.0" />
+    <PackageReference Include="Amazon.CDK.AWS.Lambda" Version="1.172.0" />
+    <PackageReference Include="Amazon.CDK.AWS.Lambda.EventSources" Version="1.172.0" />
+    <PackageReference Include="Amazon.CDK.AWS.Route53.Targets" Version="1.172.0" />
+    <PackageReference Include="Amazon.CDK.AWS.S3.Assets" Version="1.172.0" />
+    <PackageReference Include="Amazon.CDK.AWS.S3.Deployment" Version="1.172.0" />
+    <PackageReference Include="Amazon.JSII.Analyzers" Version="1.67.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.Production.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
