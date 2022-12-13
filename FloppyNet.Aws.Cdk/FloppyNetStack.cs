@@ -3,6 +3,7 @@ using Amazon.CDK.AWS.APIGateway;
 using Amazon.CDK.AWS.CertificateManager;
 using Amazon.CDK.AWS.CloudFront;
 using Amazon.CDK.AWS.CloudFront.Origins;
+using Amazon.CDK.AWS.Events;
 using Amazon.CDK.AWS.Lambda;
 using Amazon.CDK.AWS.Lambda.EventSources;
 using Amazon.CDK.AWS.Route53;
@@ -13,6 +14,7 @@ using Amazon.CDK.AWS.SQS;
 using Microsoft.Extensions.Configuration;
 using Function = Amazon.CDK.AWS.Lambda.Function;
 using FunctionProps = Amazon.CDK.AWS.Lambda.FunctionProps;
+using LambdaFunctionTarget = Amazon.CDK.AWS.Events.Targets.LambdaFunction;
 
 namespace FloppyNet.Aws.Cdk;
 
@@ -29,12 +31,38 @@ public class FloppyNetStack : Stack
             ZoneName = domain
         });
 
+        var reminderLambda = new Function(this, "ReminderLambda", new FunctionProps
+        {
+            Runtime = Runtime.PROVIDED_AL2,
+            Code = Code.FromAsset("output\\FloppyNet.Aws.ReminderLambda.zip"),
+            Handler = "bootstrap",
+            Timeout = Duration.Seconds(300),
+            Environment = new Dictionary<string, string> {
+                { "DomainRoot", domain },
+                { "Telegram__BotCredentials", config["Telegram:BotCredentials"] },
+                { "Telegram__ChatId", config["Telegram:ChatId"] }
+            },
+            MemorySize = 512
+        });
+
+        var reminderRule = new Rule(this, "ReminderRule", new RuleProps
+        {
+            Schedule = Schedule.Cron(new CronOptions
+            {
+                Minute = "0",
+                Hour = "20"
+            }),
+        });
+
+        reminderRule.AddTarget(new LambdaFunctionTarget(reminderLambda));
+
         var telegramLambda = new Function(this, "TelegramLambda", new FunctionProps
         {
             Runtime = Runtime.FROM_IMAGE,
             Code = Code.FromAssetImage("FloppyNet.Aws.TelegramLambda\\"),
             Handler = Handler.FROM_IMAGE,
             Timeout = Duration.Seconds(300),
+            MemorySize = 512
         });
 
         var wordleLambda = new Function(this, "WordleLambda", new FunctionProps

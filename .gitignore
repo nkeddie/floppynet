@@ -454,5 +454,6 @@ $RECYCLE.BIN/
 !.vscode/extensions.json
 
 cdk.out/*
+output/*
 FloppyNet.UI/floppy-net/public/*.json
 FloppyNet.Aws.Cdk/appsettings.Production.json
