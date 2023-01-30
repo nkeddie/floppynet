@@ -15,7 +15,7 @@ public class Function
     private static string? DomainRoot = null;
     private static string? BotCredentials = null;
     private static string? ChatId = null;
-    private static HttpClient client = new HttpClient();
+    private static readonly HttpClient client = new();
 
     public static async Task Main()
     {
