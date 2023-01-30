@@ -56,11 +56,11 @@ public class FloppyNetStack : Stack
 
         reminderRule.AddTarget(new LambdaFunctionTarget(reminderLambda));
 
-        var telegramLambda = new Function(this, "TelegramLambda", new FunctionProps
+        var telegramLambda = new Function(this, "TelegramLambdaAot", new FunctionProps
         {
-            Runtime = Runtime.FROM_IMAGE,
-            Code = Code.FromAssetImage("FloppyNet.Aws.TelegramLambda\\"),
-            Handler = Handler.FROM_IMAGE,
+            Runtime = Runtime.PROVIDED_AL2,
+            Code = Code.FromAsset("output\\FloppyNet.Aws.TelegramLambda.zip"),
+            Handler = "bootstrap",
             Timeout = Duration.Seconds(300),
             MemorySize = 512
         });
