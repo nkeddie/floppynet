@@ -1,0 +1,24 @@
+name: Deploy
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+  steps:
+  - uses: actions/checkout@v3
+
+  - name: Setup dotnet
+    uses: actions/setup-dotnet@v3
+    with:
+      dotnet-version: '7.0.x'
+  
+  - name: Publish Telegram Lambda
+    run: dotnet publish ./FloppyNet.Aws.TelegramLambda/ -c Release -o ${{env.DOTNET_ROOT}}/output/FloppyNet.Aws.TelegramLambda
+  
+  - name: Publish Wordle Lambda
+    run: dotnet publish ./FloppyNet.Aws.WordleLambda/ -c Release -o ${{env.DOTNET_ROOT}}/output/FloppyNet.Aws.WordleLambda
+  
+  - name: Publish Reminder Lambda
+    run: dotnet publish ./FloppyNet.Aws.ReminderLambda/ -c Release -o ${{env.DOTNET_ROOT}}/output/FloppyNet.Aws.ReminderLambda

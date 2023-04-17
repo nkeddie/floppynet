@@ -11,7 +11,7 @@ var app = new App();
 
 new FloppyNetStack(app, config, new StackProps
 {
-    Env = new Amazon.CDK.Environment { Region = config["Stack:Region"] }
+    Env = new Amazon.CDK.Environment { Region = config["Stack:Region"], Account = config["Stack:Account"] }
 });
 
 var result = app.Synth();
