@@ -22,9 +22,9 @@ jobs:
       run: dotnet publish ./FloppyNet.Aws.ReminderLambda/ -c Release -o ../output/FloppyNet.Aws.ReminderLambda
 
     - name: Set up Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: "16"
+      uses: actions/setup-node@v3
+      with:
+        node-version: "16"
 
     - name: Install CDK
       run: npm install -g aws-cdk
