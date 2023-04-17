@@ -15,7 +15,7 @@ jobs:
       run: dotnet publish ./FloppyNet.Aws.TelegramLambda/ -c Release -o ${{env.DOTNET_ROOT}}/output/FloppyNet.Aws.TelegramLambda
     
     - name: Publish Wordle Lambda
-      run: dotnet publish ./FloppyNet.Aws.WordleLambda/ -c Release -o ${{env.DOTNET_ROOT}}/output/FloppyNet.Aws.WordleLambda
+      run: dotnet publish ./FloppyNet.Aws.WordleLambda/ -c Release -r linux-x64 -o ${{env.DOTNET_ROOT}}/output/FloppyNet.Aws.WordleLambda
     
     - name: Publish Reminder Lambda
       run: dotnet publish ./FloppyNet.Aws.ReminderLambda/ -c Release -o ${{env.DOTNET_ROOT}}/output/FloppyNet.Aws.ReminderLambda
