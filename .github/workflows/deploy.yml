@@ -19,7 +19,7 @@ jobs:
       run: dotnet publish ./FloppyNet.Aws.WordleLambda/ -c Release -r linux-x64 --no-self-contained -o ../output/FloppyNet.Aws.WordleLambda
     
     - name: Publish Reminder Lambda
-     run: dotnet publish ./FloppyNet.Aws.ReminderLambda/ -c Release -o ../output/FloppyNet.Aws.ReminderLambda
+      run: dotnet publish ./FloppyNet.Aws.ReminderLambda/ -c Release -o ../output/FloppyNet.Aws.ReminderLambda
 
     - name: Set up Node
       uses: actions/setup-node@v3
