@@ -18,7 +18,7 @@ namespace FloppyNet.Aws.Cdk.Constructs
             var reminderLambda = new Function(this, "Lambda", new FunctionProps
             {
                 Runtime = Runtime.PROVIDED_AL2,
-                Code = Code.FromAsset(Path.Combine("output", "FloppyNet.Aws.ReminderLambda")),
+                Code = Code.FromAsset(Path.Combine("output", "FloppyNet.Aws.ReminderLambda.zip")),
                 Handler = "bootstrap",
                 Timeout = Duration.Seconds(300),
                 Environment = new Dictionary<string, string> {

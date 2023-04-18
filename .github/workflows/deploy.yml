@@ -14,14 +14,20 @@ jobs:
       with:
         dotnet-version: '7.0.x'
     
+    - name: Install Lambda tool
+      run: dotnet tool install -g Amazon.Lambda.Tools
+
     - name: Publish Telegram Lambda
-      run: dotnet publish ./FloppyNet.Aws.TelegramLambda/ -c Release -o ./output/FloppyNet.Aws.TelegramLambda
+      run: dotnet lambda package -o output\FloppyNet.Aws.TelegramLambda.zip -pl FloppyNet.Aws.TelegramLambda
+      # run: dotnet publish ./FloppyNet.Aws.TelegramLambda/ -c Release -o ./output/FloppyNet.Aws.TelegramLambda
     
     - name: Publish Wordle Lambda
-      run: dotnet publish ./FloppyNet.Aws.WordleLambda/ -c Release -r linux-x64 --no-self-contained -o ./output/FloppyNet.Aws.WordleLambda
+      run: dotnet lambda package -o output\FloppyNet.Aws.WordleLambda.zip -pl FloppyNet.Aws.WordleLambda
+      # run: dotnet publish ./FloppyNet.Aws.WordleLambda/ -c Release -r linux-x64 --no-self-contained -o ./output/FloppyNet.Aws.WordleLambda
     
     - name: Publish Reminder Lambda
-      run: dotnet publish ./FloppyNet.Aws.ReminderLambda/ -c Release -o ./output/FloppyNet.Aws.ReminderLambda
+      run: dotnet lambda package -o output\FloppyNet.Aws.ReminderLambda.zip -pl FloppyNet.Aws.ReminderLambda
+      # run: dotnet publish ./FloppyNet.Aws.ReminderLambda/ -c Release -o ./output/FloppyNet.Aws.ReminderLambda
 
     - name: Set up Node
       uses: actions/setup-node@v3

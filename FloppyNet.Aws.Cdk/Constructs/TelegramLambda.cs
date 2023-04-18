@@ -16,7 +16,7 @@ namespace FloppyNet.Aws.Cdk.Constructs
             Lambda = new Function(this, "Lambda", new FunctionProps
             {
                 Runtime = Runtime.PROVIDED_AL2,
-                Code = Code.FromAsset(Path.Combine("output", "FloppyNet.Aws.TelegramLambda")),
+                Code = Code.FromAsset(Path.Combine("output", "FloppyNet.Aws.TelegramLambda.zip")),
                 Handler = "bootstrap",
                 Timeout = Duration.Seconds(300),
                 MemorySize = 512

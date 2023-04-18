@@ -10,8 +10,8 @@ public class FloppyNetStack : Stack
 {
     public FloppyNetStack(Construct scope, IConfiguration config, IStackProps? props = null) : base(scope, config["Stack:Name"], props)
     {
-        string domain = config["Stack:DomainRoot"];
-        string hostedZoneId = config["Stack:HostedZoneId"];
+        string domain = config["Stack:DomainRoot"]!;
+        string hostedZoneId = config["Stack:HostedZoneId"]!;
 
         var hostedZone = HostedZone.FromHostedZoneAttributes(this, "FloppyNetHostedZone", new HostedZoneAttributes
         {
@@ -26,9 +26,9 @@ public class FloppyNetStack : Stack
             Validation = CertificateValidation.FromDns(hostedZone)
         });
 
-        var telegramLambda = new TelegramLambda(this, "Telegram", new TelegramLambdaProps(config["Telegram:SecretKey"]));
+        var telegramLambda = new TelegramLambda(this, "Telegram", new TelegramLambdaProps(config["Telegram:SecretKey"]!));
         var wordleLambda = new WordleLambda(this, "Wordle", new WordleLambdaProps(telegramLambda.Queue));
-        new ReminderLambda(this, "Reminder", new ReminderLambdaProps(domain, config["Telegram:BotCredentials"], config["Telegram:ChatId"]));
+        new ReminderLambda(this, "Reminder", new ReminderLambdaProps(domain, config["Telegram:BotCredentials"]!, config["Telegram:ChatId"]!));
 
         var frontEnd = new FrontEnd(this, "FrontEnd", new FrontEndProps(hostedZone, domain, certificate));
         frontEnd.s3Bucket.GrantReadWrite(wordleLambda.Lambda);
