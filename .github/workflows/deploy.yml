@@ -13,7 +13,7 @@ jobs:
         dotnet-version: '7.0.x'
     
     - name: Publish Telegram Lambda
-     run: dotnet publish ./FloppyNet.Aws.TelegramLambda/ -c Release -o ../output/FloppyNet.Aws.TelegramLambda
+      run: dotnet publish ./FloppyNet.Aws.TelegramLambda/ -c Release -o ../output/FloppyNet.Aws.TelegramLambda
     
     - name: Publish Wordle Lambda
       run: dotnet publish ./FloppyNet.Aws.WordleLambda/ -c Release -r linux-x64 --no-self-contained -o ../output/FloppyNet.Aws.WordleLambda
