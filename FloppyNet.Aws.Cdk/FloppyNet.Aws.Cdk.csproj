@@ -20,6 +20,7 @@
     <PackageReference Include="Amazon.CDK.AWS.S3.Assets" Version="1.172.0" />
     <PackageReference Include="Amazon.CDK.AWS.S3.Deployment" Version="1.172.0" />
     <PackageReference Include="Amazon.JSII.Analyzers" Version="1.67.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
   </ItemGroup>
 

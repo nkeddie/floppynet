@@ -1,5 +1,5 @@
 {
-  "app": "dotnet run --project FloppyNet.Aws.Cdk\\FloppyNet.Aws.Cdk.csproj",
+  "app": "dotnet run --project ./FloppyNet.Aws.Cdk/FloppyNet.Aws.Cdk.csproj",
   "context": {
     "@aws-cdk/aws-apigateway:usagePlanKeyOrderInsensitiveId": true,
     "@aws-cdk/core:enableStackNameDuplicates": "true",

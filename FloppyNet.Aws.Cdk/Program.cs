@@ -4,14 +4,14 @@ using Microsoft.Extensions.Configuration;
 
 var configBuilder = new ConfigurationBuilder();
 configBuilder.AddJsonFile("appsettings.json");
-configBuilder.AddJsonFile("appsettings.Production.json");
-
+configBuilder.AddJsonFile("appsettings.Production.json", optional: true);
+configBuilder.AddEnvironmentVariables();
 var config = configBuilder.Build();
 var app = new App();
 
 new FloppyNetStack(app, config, new StackProps
 {
-    Env = new Amazon.CDK.Environment { Region = config["Stack:Region"] }
+    Env = new Amazon.CDK.Environment { Region = config["App:Region"], Account = config["App:Account"] }
 });
 
 var result = app.Synth();
