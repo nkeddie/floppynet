@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 
 var configBuilder = new ConfigurationBuilder();
 configBuilder.AddJsonFile("appsettings.json");
-configBuilder.AddJsonFile("appsettings.Production.json");
+configBuilder.AddJsonFile("appsettings.Production.json", optional: true);
 
 var config = configBuilder.Build();
 var app = new App();

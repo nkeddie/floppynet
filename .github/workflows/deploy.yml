@@ -12,14 +12,14 @@ jobs:
       with:
         dotnet-version: '7.0.x'
     
-    #- name: Publish Telegram Lambda
-    #  run: dotnet publish ./FloppyNet.Aws.TelegramLambda/ -c Release -o ../output/FloppyNet.Aws.TelegramLambda
+    - name: Publish Telegram Lambda
+     run: dotnet publish ./FloppyNet.Aws.TelegramLambda/ -c Release -o ../output/FloppyNet.Aws.TelegramLambda
     
     - name: Publish Wordle Lambda
       run: dotnet publish ./FloppyNet.Aws.WordleLambda/ -c Release -r linux-x64 --no-self-contained -o ../output/FloppyNet.Aws.WordleLambda
     
-    #- name: Publish Reminder Lambda
-    #  run: dotnet publish ./FloppyNet.Aws.ReminderLambda/ -c Release -o ../output/FloppyNet.Aws.ReminderLambda
+    - name: Publish Reminder Lambda
+     run: dotnet publish ./FloppyNet.Aws.ReminderLambda/ -c Release -o ../output/FloppyNet.Aws.ReminderLambda
 
     - name: Set up Node
       uses: actions/setup-node@v3
@@ -38,3 +38,12 @@ jobs:
 
     - name: Deploy
       run: cdk deploy --require-approval=never
+      env:
+        App__Account: ${{ secrets.AWS_ACCOUNT_ID }}
+        App__Region: ${{ secrets.AWS_REGION }}
+        Telegram__SecretKey: ${{ secrets.TELEGRAM_SECRET }}
+        Telegram__BotCredentials: ${{ secrets.TELEGRAM_BOT_CREDENTIALS }}
+        Telegram__ChatId: ${{ secrets.TELEGRAM_CHAT_ID }}
+        Stack__Name: ${{ secrets.CDK_STACK_NAME }}
+        Stack__DomainRoot: ${{ secrets.CDK_STACK_DOMAIN }}
+        Stack__HostedZoneId: ${{ secrets.CDK_HOSTED_ZONE_ID }}
