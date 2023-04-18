@@ -56,7 +56,7 @@ namespace FloppyNet.Aws.Cdk.Constructs
             new BucketDeployment(this, "WordleDeployment", new BucketDeploymentProps
             {
                 DestinationBucket = s3Bucket,
-                Sources = new[] { Source.Asset("FloppyNet.UI\\floppy-net\\dist") },
+                Sources = new[] { Source.Asset(Path.Combine("FloppyNet.UI", "floppy-net", "dist")) },
                 Prune = false,
                 Distribution = cloudFront,
             });

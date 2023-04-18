@@ -16,7 +16,7 @@ namespace FloppyNet.Aws.Cdk.Constructs
             Lambda = new Function(this, "Lambda", new FunctionProps
             {
                 Runtime = Runtime.DOTNET_6,
-                Code = Code.FromAsset("output\\FloppyNet.Aws.WordleLambda"),
+                Code = Code.FromAsset(Path.Combine("output", "FloppyNet.Aws.WordleLambda")),
                 Handler = "FloppyNet.Aws.WordleLambda::FloppyNet.Aws.WordleLambda.Function::FunctionHandler",
                 Timeout = Duration.Seconds(300),
                 MemorySize = 512
