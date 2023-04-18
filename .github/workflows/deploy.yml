@@ -27,7 +27,7 @@ jobs:
         node-version: "16"
     
     - name: Build Web App
-      working_directory: ./FloppyNet.UI/floppy-net
+      working-directory: ./FloppyNet.UI/floppy-net
       run: npm install && npm run build
       
     - name: Install CDK
