@@ -1,6 +1,7 @@
 import { createStore } from 'vuex';
 import userSlice from './slices/userSlice';
 import userHistorySlice from './slices/userHistorySlice';
+import userStatsSlice from './slices/userStatsSlice';
 import groupHistorySlice from './slices/groupHistorySlice';
 import leaderboardSlice from './slices/leaderboardSlice';
 
@@ -9,6 +10,7 @@ export default createStore({
         return {
             ...userSlice.state,
             ...userHistorySlice.state,
+            ...userStatsSlice.state,
             ...groupHistorySlice.state,
             ...leaderboardSlice.state,
         }
@@ -19,6 +21,7 @@ export default createStore({
     mutations: {
         ...userSlice.mutations,
         ...userHistorySlice.mutations,
+        ...userStatsSlice.mutations,
         ...groupHistorySlice.mutations,
         ...leaderboardSlice.mutations,
         setLoading (state, payload) {
@@ -31,6 +34,7 @@ export default createStore({
     actions: {
         ...userSlice.actions,
         ...userHistorySlice.actions,
+        ...userStatsSlice.actions,
         ...groupHistorySlice.actions,
         ...leaderboardSlice.actions,
     }
