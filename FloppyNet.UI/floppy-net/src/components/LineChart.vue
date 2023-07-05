@@ -3,7 +3,7 @@
     <v-card>
       <v-progress-linear v-if="$props.loading" class="position-absolute" indeterminate />
       <v-card-title>
-        <v-icon>mdi-chart-line</v-icon> Recent Stats
+        <v-icon>mdi-chart-line</v-icon> Stats
       </v-card-title>
       <v-card-text>
         <v-container>
