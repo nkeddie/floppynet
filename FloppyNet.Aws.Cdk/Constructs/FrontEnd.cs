@@ -26,7 +26,11 @@ namespace FloppyNet.Aws.Cdk.Constructs
                 BucketName = props.Domain,
                 WebsiteIndexDocument = "index.html",
                 PublicReadAccess = true,
-                ObjectOwnership = ObjectOwnership.OBJECT_WRITER,
+                BlockPublicAccess = new BlockPublicAccess(new BlockPublicAccessOptions
+                {
+                    BlockPublicPolicy = false,
+                    RestrictPublicBuckets = false
+                })
             });
 
             s3Bucket.GrantPublicAccess();
