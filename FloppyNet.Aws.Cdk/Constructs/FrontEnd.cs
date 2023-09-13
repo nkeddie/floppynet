@@ -23,11 +23,13 @@ namespace FloppyNet.Aws.Cdk.Constructs
 
             s3Bucket = new Bucket(this, "WordleBucket", new BucketProps
             {
-                AccessControl = BucketAccessControl.PUBLIC_READ,
                 BucketName = props.Domain,
                 WebsiteIndexDocument = "index.html",
-                PublicReadAccess = true
+                PublicReadAccess = true,
+                ObjectOwnership = ObjectOwnership.OBJECT_WRITER,
             });
+
+            s3Bucket.GrantPublicAccess();
 
             var cloudFrontOrigin = new S3Origin(s3Bucket);
 
