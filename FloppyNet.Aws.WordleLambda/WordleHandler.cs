@@ -16,15 +16,6 @@ namespace FloppyNet.Aws.WordleLambda
         private readonly IAmazonS3 client;
         private readonly string bucketName;
 
-        private readonly string[] ValidCharacters = new string[]
-        {
-            "⬜️",
-            "🟨",
-            "🟩",
-            "⬛",
-            "\n"
-        };
-
         public WordleHandler(ILambdaContext lambdaContext, IAmazonS3 client, string bucketName)
         {
             this.lambdaContext = lambdaContext;
@@ -131,7 +122,7 @@ namespace FloppyNet.Aws.WordleLambda
         private bool IsGuessMatrixValid(string guessMatrix)
         {
             var unicodeMatrix = new StringInfo(guessMatrix);
-
+            
             if (unicodeMatrix.LengthInTextElements > 36)
                 return false;
 
@@ -139,18 +130,17 @@ namespace FloppyNet.Aws.WordleLambda
             {
                 var character = unicodeMatrix.SubstringByTextElements(i, 1);
 
-                switch(character)
+                switch (char.ConvertToUtf32(character, 0))
                 {
-                    case "⬜️":
-                    case "🟨":
-                    case "🟩":
-                    case "⬛":
-                    case "\n":
+                    case 10:     // \n
+                    case 11035:  // Black Square
+                    case 11036:  // White Square
+                    case 129000: // Yellow Square
+                    case 129001: // Green Square
                         break;
                     default:
                         return false;
                 }
-
             }
 
             return true;
