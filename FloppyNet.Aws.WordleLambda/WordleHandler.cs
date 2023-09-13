@@ -2,6 +2,7 @@
 using Amazon.S3;
 using Amazon.S3.Model;
 using FloppyNet.Aws.WordleLambda.Models.Wordle;
+using System.Globalization;
 using System.Net;
 using System.Text.Json;
 using System.Text.RegularExpressions;
@@ -14,6 +15,15 @@ namespace FloppyNet.Aws.WordleLambda
         private readonly ILambdaContext lambdaContext;
         private readonly IAmazonS3 client;
         private readonly string bucketName;
+
+        private readonly string[] ValidCharacters = new string[]
+        {
+            "⬜️",
+            "🟨",
+            "🟩",
+            "⬛",
+            "\n"
+        };
 
         public WordleHandler(ILambdaContext lambdaContext, IAmazonS3 client, string bucketName)
         {
@@ -118,16 +128,50 @@ namespace FloppyNet.Aws.WordleLambda
             );
         }
 
+        private bool IsGuessMatrixValid(string guessMatrix)
+        {
+            var unicodeMatrix = new StringInfo(guessMatrix);
+
+            if (unicodeMatrix.LengthInTextElements > 36)
+                return false;
+
+            for (var i = 0; i < unicodeMatrix.LengthInTextElements; i++)
+            {
+                var character = unicodeMatrix.SubstringByTextElements(i, 1);
+
+                switch(character)
+                {
+                    case "⬜️":
+                    case "🟨":
+                    case "🟩":
+                    case "⬛":
+                    case "\n":
+                        break;
+                    default:
+                        return false;
+                }
+
+            }
+
+            return true;
+        }
+
         private WordleSubmissionData? ParseMessage(long userId, string message)
         {
             var matchData = regex.Match(message);
-            if (!matchData.Success) return null;
+
+            if (!matchData.Success)
+                return null;
 
             var wordleId = short.Parse(matchData.Groups["WordleId"].Value);
             var attemptString = matchData.Groups["Attempts"].Value;
             var guessMatrix = matchData.Groups["GuessMatrix"].Value;
 
+            if (!IsGuessMatrixValid(guessMatrix))
+                return null;
+
             var success = true;
+
             if (!int.TryParse(attemptString, out var attempts))
             {
                 success = false;
