@@ -153,7 +153,7 @@ namespace FloppyNet.Aws.WordleLambda
             if (!matchData.Success)
                 return null;
 
-            var wordleId = short.Parse(matchData.Groups["WordleId"].Value);
+            var wordleId = short.Parse(matchData.Groups["WordleId"].Value, NumberStyles.AllowThousands);
             var attemptString = matchData.Groups["Attempts"].Value;
             var guessMatrix = matchData.Groups["GuessMatrix"].Value;
 
