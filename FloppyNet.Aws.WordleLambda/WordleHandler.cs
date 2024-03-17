@@ -11,7 +11,7 @@ namespace FloppyNet.Aws.WordleLambda
 {
     public partial class WordleHandler
     {
-        private readonly Regex regex = new("Wordle (?<WordleId>[0-9]{3,4}) (?<Attempts>[1-6X])/6(\\*)?\\n\\n(?<GuessMatrix>(.|\\n)*)");
+        private readonly Regex regex = new("Wordle (?<WordleId>([1-9]{1},)?|[0-9]{3}) (?<Attempts>[1-6X])/6(\\*)?\\n\\n(?<GuessMatrix>(.|\\n)*)");
         private readonly ILambdaContext lambdaContext;
         private readonly IAmazonS3 client;
         private readonly string bucketName;
